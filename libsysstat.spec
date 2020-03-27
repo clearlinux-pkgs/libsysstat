@@ -6,7 +6,7 @@
 #
 Name     : libsysstat
 Version  : 0.4.2
-Release  : 2
+Release  : 3
 URL      : https://downloads.lxqt.org/downloads/libsysstat/0.4.2/libsysstat-0.4.2.tar.xz
 Source0  : https://downloads.lxqt.org/downloads/libsysstat/0.4.2/libsysstat-0.4.2.tar.xz
 Source99 : https://downloads.lxqt.org/downloads/libsysstat/0.4.2/libsysstat-0.4.2.tar.xz.asc
