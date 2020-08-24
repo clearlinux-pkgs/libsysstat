@@ -6,11 +6,11 @@
 #
 Name     : libsysstat
 Version  : 0.4.2
-Release  : 3
-URL      : https://downloads.lxqt.org/downloads/libsysstat/0.4.2/libsysstat-0.4.2.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/libsysstat/0.4.2/libsysstat-0.4.2.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/libsysstat/0.4.2/libsysstat-0.4.2.tar.xz.asc
-Summary  : Library to query system statistics (net, resource usage, ...)
+Release  : 4
+URL      : https://github.com/lxqt/libsysstat/releases/download/0.4.2/libsysstat-0.4.2.tar.xz
+Source0  : https://github.com/lxqt/libsysstat/releases/download/0.4.2/libsysstat-0.4.2.tar.xz
+Source1  : https://github.com/lxqt/libsysstat/releases/download/0.4.2/libsysstat-0.4.2.tar.xz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: libsysstat-data = %{version}-%{release}
@@ -18,7 +18,9 @@ Requires: libsysstat-lib = %{version}-%{release}
 Requires: libsysstat-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-qmake
+BuildRequires : liblxqt-data
 BuildRequires : lxqt-build-tools
+BuildRequires : qtbase-dev
 
 %description
 # libsysstat
@@ -42,6 +44,7 @@ Group: Development
 Requires: libsysstat-lib = %{version}-%{release}
 Requires: libsysstat-data = %{version}-%{release}
 Provides: libsysstat-devel = %{version}-%{release}
+Requires: libsysstat = %{version}-%{release}
 
 %description dev
 dev components for the libsysstat package.
@@ -67,24 +70,30 @@ license components for the libsysstat package.
 
 %prep
 %setup -q -n libsysstat-0.4.2
+cd %{_builddir}/libsysstat-0.4.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1549301327
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1598294572
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549301327
+export SOURCE_DATE_EPOCH=1598294572
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libsysstat
-cp COPYING %{buildroot}/usr/share/package-licenses/libsysstat/COPYING
+cp %{_builddir}/libsysstat-0.4.2/COPYING %{buildroot}/usr/share/package-licenses/libsysstat/7fab4cd4eb7f499d60fe183607f046484acd6e2d
 pushd clr-build
 %make_install
 popd
@@ -120,4 +129,4 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libsysstat/COPYING
+/usr/share/package-licenses/libsysstat/7fab4cd4eb7f499d60fe183607f046484acd6e2d
