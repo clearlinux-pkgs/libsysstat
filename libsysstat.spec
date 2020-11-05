@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : libsysstat
-Version  : 0.4.3
-Release  : 5
-URL      : https://github.com/lxqt/libsysstat/releases/download/0.4.3/libsysstat-0.4.3.tar.xz
-Source0  : https://github.com/lxqt/libsysstat/releases/download/0.4.3/libsysstat-0.4.3.tar.xz
-Source1  : https://github.com/lxqt/libsysstat/releases/download/0.4.3/libsysstat-0.4.3.tar.xz.asc
+Version  : 0.4.4
+Release  : 6
+URL      : https://github.com/lxqt/libsysstat/releases/download/0.4.4/libsysstat-0.4.4.tar.xz
+Source0  : https://github.com/lxqt/libsysstat/releases/download/0.4.4/libsysstat-0.4.4.tar.xz
+Source1  : https://github.com/lxqt/libsysstat/releases/download/0.4.4/libsysstat-0.4.4.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -18,7 +18,7 @@ Requires: libsysstat-lib = %{version}-%{release}
 Requires: libsysstat-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-qmake
-BuildRequires : liblxqt-data
+BuildRequires : liblxqt-dev
 BuildRequires : lxqt-build-tools
 BuildRequires : qtbase-dev
 
@@ -69,15 +69,15 @@ license components for the libsysstat package.
 
 
 %prep
-%setup -q -n libsysstat-0.4.3
-cd %{_builddir}/libsysstat-0.4.3
+%setup -q -n libsysstat-0.4.4
+cd %{_builddir}/libsysstat-0.4.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1598905455
+export SOURCE_DATE_EPOCH=1604543049
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -90,10 +90,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1598905455
+export SOURCE_DATE_EPOCH=1604543049
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libsysstat
-cp %{_builddir}/libsysstat-0.4.3/COPYING %{buildroot}/usr/share/package-licenses/libsysstat/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/libsysstat-0.4.4/COPYING %{buildroot}/usr/share/package-licenses/libsysstat/7fab4cd4eb7f499d60fe183607f046484acd6e2d
 pushd clr-build
 %make_install
 popd
@@ -125,7 +125,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libsysstat-qt5.so.0
-/usr/lib64/libsysstat-qt5.so.0.4.3
+/usr/lib64/libsysstat-qt5.so.0.4.4
 
 %files license
 %defattr(0644,root,root,0755)
