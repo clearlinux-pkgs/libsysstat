@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : libsysstat
-Version  : 0.4.5
-Release  : 7
-URL      : https://github.com/lxqt/libsysstat/releases/download/0.4.5/libsysstat-0.4.5.tar.xz
-Source0  : https://github.com/lxqt/libsysstat/releases/download/0.4.5/libsysstat-0.4.5.tar.xz
-Source1  : https://github.com/lxqt/libsysstat/releases/download/0.4.5/libsysstat-0.4.5.tar.xz.asc
+Version  : 0.4.6
+Release  : 8
+URL      : https://github.com/lxqt/libsysstat/releases/download/0.4.6/libsysstat-0.4.6.tar.xz
+Source0  : https://github.com/lxqt/libsysstat/releases/download/0.4.6/libsysstat-0.4.6.tar.xz
+Source1  : https://github.com/lxqt/libsysstat/releases/download/0.4.6/libsysstat-0.4.6.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -69,15 +69,15 @@ license components for the libsysstat package.
 
 
 %prep
-%setup -q -n libsysstat-0.4.5
-cd %{_builddir}/libsysstat-0.4.5
+%setup -q -n libsysstat-0.4.6
+cd %{_builddir}/libsysstat-0.4.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618511539
+export SOURCE_DATE_EPOCH=1636503750
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -90,10 +90,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618511539
+export SOURCE_DATE_EPOCH=1636503750
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libsysstat
-cp %{_builddir}/libsysstat-0.4.5/COPYING %{buildroot}/usr/share/package-licenses/libsysstat/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/libsysstat-0.4.6/COPYING %{buildroot}/usr/share/package-licenses/libsysstat/7fab4cd4eb7f499d60fe183607f046484acd6e2d
 pushd clr-build
 %make_install
 popd
@@ -125,7 +125,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libsysstat-qt5.so.0
-/usr/lib64/libsysstat-qt5.so.0.4.5
+/usr/lib64/libsysstat-qt5.so.0.4.6
 
 %files license
 %defattr(0644,root,root,0755)
